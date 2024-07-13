@@ -1,0 +1,179 @@
+<div class="navbar">
+    <h1>BookSky</h1>
+</div>
+<div class="container">
+   <div class="bottom">
+    <h2>THE EXTRA MILE</h2>
+    <h3> Jane Peterson</h3>
+    <p>A young intern named Alex at a tech company always volunteered to help others, often staying late to assist with projects. One evening, he stayed behind to help a team with a critical deadline, even though it wasn't his responsibility. His efforts didn’t go unnoticed. When a full-time position opened up, Alex was the first choice due to his dedication and willingness to go the extra mile. His story highlights how going above and beyond can open doors and create opportunities.</p>
+    <button class="btn" onclick="deletebook(event)">Delete</button>
+</div>
+
+
+</div>
+<button class="add" id="addbutton" onclick="add()">+</button>
+
+<div class="overlay"></div>
+<div class="popupbox">
+    <form>
+    <h1>Add Book Title</h1>
+    <input placeholder="bookname" id="booknameid"><br>
+    <input placeholder="authorname" id="authornameid"><br>
+    <textarea placeholder="shortdescription" id="shortdc"></textarea><br>
+
+    <button class="btn1"  id="addbook">Add</button>
+    <button class="btn2" id="removebook" >Delete</button>
+    
+    </form>
+    
+</div>
+
+<style>
+    .navbar{
+        background-color: crimson;
+        color: black;
+        padding-top: 5px;
+        padding-left: 5px;
+
+        
+    }
+    .bottom{
+        background-color: black;
+        color:white;
+        padding: 20px;
+        margin-left: 20px;
+        width:30%;
+        border-radius: 10px;
+        margin-top: 4%;
+        display: inline-block;
+    }
+    h2{
+        color: crimson;
+    }
+    .btn{
+        background-color: crimson;
+        color:black;
+        border-radius: 7px;
+        padding-top: 5px;
+        padding-left: 5px;
+    }
+    .add{
+        background-color: crimson;
+        font-size: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 100%;
+        margin-left: 90%;
+
+    }
+    .overlay{
+        background-color: black;
+        opacity: 0.8;
+        width:100%;
+        height: 100%;
+        position: absolute;
+        display: none;
+        top:0px;
+        left:0px;
+        z-index: 1;
+
+    }
+    .popupbox{
+        background-color:crimson;
+        color:white;
+        padding: 40px;
+        left: 10%;
+        z-index: 2;
+        position: absolute;
+        display: none;
+        width:40%;
+        border-radius: 10px;
+        top: 20%;
+    }
+    h1{
+        color: black;
+    }
+    .btn2,.btn1{
+        background-color: black;
+        color:white;
+        
+        padding-top:20px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+        padding-right: 10px;
+        margin:5px;
+        left:30%;
+    }
+    .popupbox input{
+        background:transparent;
+        padding: 5px;
+        width:100%;
+        border:none;
+        margin: 5px;
+        font-size: 20px;
+        border-bottom: solid black 2px;
+    }
+    .popupbox textarea{
+        width:100%;
+        background: transparent;
+        border: solid black 2px;
+        padding: 5px;
+        margin: 5px;
+        font-size: 20px;
+    }
+    .popupbox input::placeholder{
+        color:black;
+    }
+    .popupbox textarea::placeholder{
+        color:black;
+    }
+    .popupbox input:focus{
+        outline: none;
+    }
+    .popupbox textarea:focus{
+        outline: none;
+    }
+</style>
+
+
+<script>
+    var bottom=document.querySelector(".bottom")
+    var overlay=document.querySelector(".overlay")
+    var popupbox=document.querySelector(".popupbox")
+     
+
+     function add(){
+         overlay.style.display="block";
+         popupbox.style.display="block"
+     }
+     function deletebook(event){
+         event.target.parentElement.remove()
+      }
+
+     //selecting container,addbook,booknameid,authornameid,shortdc
+     var container=document.querySelector(".container")
+     var addbook=document.getElementById("addbook")
+     var booknameid=document.getElementById("booknameid")
+     var authornameid=document.getElementById("authornameid")
+     var shortdc=document.getElementById("shortdc")
+     
+
+    addbook.addEventListener("click",function(event){
+        event.preventDefault();
+        var div=document.createElement("div")
+        div.setAttribute("class","bottom");
+
+        div.innerHTML=`<h2>${booknameid.value}</h2>
+                    <h3>${authornameid.value}</h3>
+                    <p>${shortdc.value}</p>
+                    <button class="btn" onclick="deletebook(event)">Delete</button>`;
+
+        container.appendChild(div)
+
+      overlay.style.display="none";
+      popupbox.style.display="none";
+      
+    })
+</script>
